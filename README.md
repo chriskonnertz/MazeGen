@@ -13,5 +13,5 @@ This was a private weekend project just for learning Kotlin. The code is ugly, d
 * There are two "printers", a HTML printer (currently active) and a text file / console / ASCII art printer that might have at least one bug. `maze.html` actually has been created by the HTML printer.
 * Both "printers" will create a file to save the maze
 * They will also spam your console with a printed version of the maze everytime something in the maze has changed
-* The HTML file has two features: Mouseover that displays the current positon (row/cow) and you can mark fields by clicking on them
+* The HTML file has two features: Mouseover that displays the current positon (row/col) and you can mark fields by clicking on them
 * There is a lot of unused code in the .kt file
