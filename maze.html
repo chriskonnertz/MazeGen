@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html>
+<head><title>Maze</title></head>
+<body>
+<style>.maze {
+    background-color: white;
+    margin-bottom: 20px
+}
+
+.maze .maze-row {
+    display: table-row
+}
+
+.maze .maze-field {
+    width: 20px;
+    height: 20px;
+    float: left;
+    border: 1px solid transparent
+}
+
+.maze .maze-field.top {
+    border-top: 1px solid black
+}
+
+.maze .maze-field.right {
+    border-right: 1px solid black
+}
+
+.maze .maze-field.bottom {
+    border-bottom: 1px solid black
+}
+
+.maze .maze-field.left {
+    border-left: 1px solid black
+}
+
+.maze .maze-field.start {
+    background-color: silver
+}
+
+.maze .maze-field.exit {
+    background-color: silver
+}
+
+.maze .maze-field.marked {
+    background-color: #98FB98
+}
+
+.maze-field:hover::before {
+    content: attr(data-title)
+}</style>
+<div class="maze">
+    <div class="maze-row">
+        <div class="maze-field top right left " data-title="0/0"></div>
+        <div class="maze-field top right left " data-title="0/1"></div>
+        <div class="maze-field top left " data-title="0/2"></div>
+        <div class="maze-field top bottom " data-title="0/3"></div>
+        <div class="maze-field top right bottom " data-title="0/4"></div>
+        <div class="maze-field top right left " data-title="0/5"></div>
+        <div class="maze-field top right left " data-title="0/6"></div>
+        <div class="maze-field top left " data-title="0/7"></div>
+        <div class="maze-field top bottom " data-title="0/8"></div>
+        <div class="maze-field top right " data-title="0/9"></div>
+        <div class="maze-field top bottom left " data-title="0/10"></div>
+        <div class="maze-field top " data-title="0/11"></div>
+        <div class="maze-field top " data-title="0/12"></div>
+        <div class="maze-field top bottom " data-title="0/13"></div>
+        <div class="maze-field top " data-title="0/14"></div>
+        <div class="maze-field top bottom " data-title="0/15"></div>
+        <div class="maze-field top right bottom " data-title="0/16"></div>
+        <div class="maze-field top left " data-title="0/17"></div>
+        <div class="maze-field top bottom " data-title="0/18"></div>
+        <div class="maze-field top bottom " data-title="0/19"></div>
+        <div class="maze-field top right " data-title="0/20"></div>
+        <div class="maze-field top left " data-title="0/21"></div>
+        <div class="maze-field top bottom " data-title="0/22"></div>
+        <div class="maze-field top right " data-title="0/23"></div>
+        <div class="maze-field top right left " data-title="0/24"></div>
+        <div class="maze-field top bottom left " data-title="0/25"></div>
+        <div class="maze-field top right " data-title="0/26"></div>
+        <div class="maze-field top right left " data-title="0/27"></div>
+        <div class="maze-field top left " data-title="0/28"></div>
+        <div class="maze-field top right bottom " data-title="0/29"></div>
+        <div class="maze-field left exit " data-title="0/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field bottom left " data-title="1/0"></div>
+        <div class="maze-field bottom " data-title="1/1"></div>
+        <div class="maze-field " data-title="1/2"></div>
+        <div class="maze-field top right bottom " data-title="1/3"></div>
+        <div class="maze-field top left " data-title="1/4"></div>
+        <div class="maze-field right bottom " data-title="1/5"></div>
+        <div class="maze-field right left " data-title="1/6"></div>
+        <div class="maze-field left " data-title="1/7"></div>
+        <div class="maze-field top " data-title="1/8"></div>
+        <div class="maze-field bottom " data-title="1/9"></div>
+        <div class="maze-field top right bottom " data-title="1/10"></div>
+        <div class="maze-field right left " data-title="1/11"></div>
+        <div class="maze-field bottom left " data-title="1/12"></div>
+        <div class="maze-field top right bottom " data-title="1/13"></div>
+        <div class="maze-field right bottom left " data-title="1/14"></div>
+        <div class="maze-field top right left " data-title="1/15"></div>
+        <div class="maze-field top right left " data-title="1/16"></div>
+        <div class="maze-field right bottom left " data-title="1/17"></div>
+        <div class="maze-field top left " data-title="1/18"></div>
+        <div class="maze-field top right " data-title="1/19"></div>
+        <div class="maze-field right left " data-title="1/20"></div>
+        <div class="maze-field left " data-title="1/21"></div>
+        <div class="maze-field top right " data-title="1/22"></div>
+        <div class="maze-field right bottom left " data-title="1/23"></div>
+        <div class="maze-field right left " data-title="1/24"></div>
+        <div class="maze-field top bottom left " data-title="1/25"></div>
+        <div class="maze-field " data-title="1/26"></div>
+        <div class="maze-field bottom " data-title="1/27"></div>
+        <div class="maze-field " data-title="1/28"></div>
+        <div class="maze-field top bottom " data-title="1/29"></div>
+        <div class="maze-field right " data-title="1/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top left " data-title="2/0"></div>
+        <div class="maze-field top " data-title="2/1"></div>
+        <div class="maze-field " data-title="2/2"></div>
+        <div class="maze-field top bottom " data-title="2/3"></div>
+        <div class="maze-field bottom " data-title="2/4"></div>
+        <div class="maze-field top bottom " data-title="2/5"></div>
+        <div class="maze-field right bottom " data-title="2/6"></div>
+        <div class="maze-field right left " data-title="2/7"></div>
+        <div class="maze-field right bottom left " data-title="2/8"></div>
+        <div class="maze-field top bottom left " data-title="2/9"></div>
+        <div class="maze-field top bottom " data-title="2/10"></div>
+        <div class="maze-field " data-title="2/11"></div>
+        <div class="maze-field top right " data-title="2/12"></div>
+        <div class="maze-field top left " data-title="2/13"></div>
+        <div class="maze-field top " data-title="2/14"></div>
+        <div class="maze-field bottom " data-title="2/15"></div>
+        <div class="maze-field bottom " data-title="2/16"></div>
+        <div class="maze-field top bottom " data-title="2/17"></div>
+        <div class="maze-field right bottom " data-title="2/18"></div>
+        <div class="maze-field right bottom left " data-title="2/19"></div>
+        <div class="maze-field left " data-title="2/20"></div>
+        <div class="maze-field right " data-title="2/21"></div>
+        <div class="maze-field right bottom left " data-title="2/22"></div>
+        <div class="maze-field top right left " data-title="2/23"></div>
+        <div class="maze-field bottom left " data-title="2/24"></div>
+        <div class="maze-field top " data-title="2/25"></div>
+        <div class="maze-field right bottom " data-title="2/26"></div>
+        <div class="maze-field top left " data-title="2/27"></div>
+        <div class="maze-field bottom " data-title="2/28"></div>
+        <div class="maze-field top bottom " data-title="2/29"></div>
+        <div class="maze-field right " data-title="2/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right bottom left " data-title="3/0"></div>
+        <div class="maze-field right bottom left " data-title="3/1"></div>
+        <div class="maze-field right left " data-title="3/2"></div>
+        <div class="maze-field top left " data-title="3/3"></div>
+        <div class="maze-field top bottom " data-title="3/4"></div>
+        <div class="maze-field top right bottom " data-title="3/5"></div>
+        <div class="maze-field top right left " data-title="3/6"></div>
+        <div class="maze-field left " data-title="3/7"></div>
+        <div class="maze-field top right bottom " data-title="3/8"></div>
+        <div class="maze-field top right left " data-title="3/9"></div>
+        <div class="maze-field top bottom left " data-title="3/10"></div>
+        <div class="maze-field right " data-title="3/11"></div>
+        <div class="maze-field left " data-title="3/12"></div>
+        <div class="maze-field right bottom " data-title="3/13"></div>
+        <div class="maze-field right bottom left " data-title="3/14"></div>
+        <div class="maze-field top left " data-title="3/15"></div>
+        <div class="maze-field top bottom " data-title="3/16"></div>
+        <div class="maze-field top right bottom " data-title="3/17"></div>
+        <div class="maze-field top bottom left " data-title="3/18"></div>
+        <div class="maze-field top " data-title="3/19"></div>
+        <div class="maze-field right bottom " data-title="3/20"></div>
+        <div class="maze-field right left " data-title="3/21"></div>
+        <div class="maze-field top left " data-title="3/22"></div>
+        <div class="maze-field bottom " data-title="3/23"></div>
+        <div class="maze-field top " data-title="3/24"></div>
+        <div class="maze-field " data-title="3/25"></div>
+        <div class="maze-field top " data-title="3/26"></div>
+        <div class="maze-field " data-title="3/27"></div>
+        <div class="maze-field top right bottom " data-title="3/28"></div>
+        <div class="maze-field top bottom left " data-title="3/29"></div>
+        <div class="maze-field right bottom " data-title="3/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top bottom left " data-title="4/0"></div>
+        <div class="maze-field top bottom " data-title="4/1"></div>
+        <div class="maze-field " data-title="4/2"></div>
+        <div class="maze-field bottom " data-title="4/3"></div>
+        <div class="maze-field top right bottom " data-title="4/4"></div>
+        <div class="maze-field top left " data-title="4/5"></div>
+        <div class="maze-field right bottom " data-title="4/6"></div>
+        <div class="maze-field left " data-title="4/7"></div>
+        <div class="maze-field top bottom " data-title="4/8"></div>
+        <div class="maze-field bottom " data-title="4/9"></div>
+        <div class="maze-field top bottom " data-title="4/10"></div>
+        <div class="maze-field right " data-title="4/11"></div>
+        <div class="maze-field left " data-title="4/12"></div>
+        <div class="maze-field top right " data-title="4/13"></div>
+        <div class="maze-field top right left " data-title="4/14"></div>
+        <div class="maze-field right left " data-title="4/15"></div>
+        <div class="maze-field top left " data-title="4/16"></div>
+        <div class="maze-field top bottom " data-title="4/17"></div>
+        <div class="maze-field top right " data-title="4/18"></div>
+        <div class="maze-field left " data-title="4/19"></div>
+        <div class="maze-field top right bottom " data-title="4/20"></div>
+        <div class="maze-field bottom left " data-title="4/21"></div>
+        <div class="maze-field right " data-title="4/22"></div>
+        <div class="maze-field top bottom left " data-title="4/23"></div>
+        <div class="maze-field right " data-title="4/24"></div>
+        <div class="maze-field right bottom left " data-title="4/25"></div>
+        <div class="maze-field right left " data-title="4/26"></div>
+        <div class="maze-field bottom left " data-title="4/27"></div>
+        <div class="maze-field top " data-title="4/28"></div>
+        <div class="maze-field top " data-title="4/29"></div>
+        <div class="maze-field top right " data-title="4/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top right left " data-title="5/0"></div>
+        <div class="maze-field top left " data-title="5/1"></div>
+        <div class="maze-field right " data-title="5/2"></div>
+        <div class="maze-field top right left " data-title="5/3"></div>
+        <div class="maze-field top left " data-title="5/4"></div>
+        <div class="maze-field right bottom " data-title="5/5"></div>
+        <div class="maze-field top bottom left " data-title="5/6"></div>
+        <div class="maze-field bottom " data-title="5/7"></div>
+        <div class="maze-field top right bottom " data-title="5/8"></div>
+        <div class="maze-field top right left " data-title="5/9"></div>
+        <div class="maze-field top bottom left " data-title="5/10"></div>
+        <div class="maze-field right " data-title="5/11"></div>
+        <div class="maze-field right bottom left " data-title="5/12"></div>
+        <div class="maze-field right bottom left " data-title="5/13"></div>
+        <div class="maze-field right left " data-title="5/14"></div>
+        <div class="maze-field bottom left " data-title="5/15"></div>
+        <div class="maze-field right bottom " data-title="5/16"></div>
+        <div class="maze-field top left " data-title="5/17"></div>
+        <div class="maze-field " data-title="5/18"></div>
+        <div class="maze-field " data-title="5/19"></div>
+        <div class="maze-field top " data-title="5/20"></div>
+        <div class="maze-field top right " data-title="5/21"></div>
+        <div class="maze-field right bottom left " data-title="5/22"></div>
+        <div class="maze-field top bottom left " data-title="5/23"></div>
+        <div class="maze-field right bottom " data-title="5/24"></div>
+        <div class="maze-field top bottom left " data-title="5/25"></div>
+        <div class="maze-field right " data-title="5/26"></div>
+        <div class="maze-field top bottom left " data-title="5/27"></div>
+        <div class="maze-field right bottom " data-title="5/28"></div>
+        <div class="maze-field right left " data-title="5/29"></div>
+        <div class="maze-field right bottom left " data-title="5/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field bottom left " data-title="6/0"></div>
+        <div class="maze-field right bottom " data-title="6/1"></div>
+        <div class="maze-field right left " data-title="6/2"></div>
+        <div class="maze-field bottom left " data-title="6/3"></div>
+        <div class="maze-field right " data-title="6/4"></div>
+        <div class="maze-field top right left " data-title="6/5"></div>
+        <div class="maze-field top right left " data-title="6/6"></div>
+        <div class="maze-field top left " data-title="6/7"></div>
+        <div class="maze-field top right bottom " data-title="6/8"></div>
+        <div class="maze-field right left " data-title="6/9"></div>
+        <div class="maze-field top left " data-title="6/10"></div>
+        <div class="maze-field right " data-title="6/11"></div>
+        <div class="maze-field top right left " data-title="6/12"></div>
+        <div class="maze-field top right left " data-title="6/13"></div>
+        <div class="maze-field bottom left " data-title="6/14"></div>
+        <div class="maze-field top " data-title="6/15"></div>
+        <div class="maze-field top " data-title="6/16"></div>
+        <div class="maze-field right bottom " data-title="6/17"></div>
+        <div class="maze-field right left " data-title="6/18"></div>
+        <div class="maze-field right bottom left " data-title="6/19"></div>
+        <div class="maze-field right bottom left " data-title="6/20"></div>
+        <div class="maze-field left " data-title="6/21"></div>
+        <div class="maze-field top " data-title="6/22"></div>
+        <div class="maze-field top bottom " data-title="6/23"></div>
+        <div class="maze-field top bottom " data-title="6/24"></div>
+        <div class="maze-field top right " data-title="6/25"></div>
+        <div class="maze-field right bottom left " data-title="6/26"></div>
+        <div class="maze-field top bottom left " data-title="6/27"></div>
+        <div class="maze-field top right " data-title="6/28"></div>
+        <div class="maze-field right bottom left " data-title="6/29"></div>
+        <div class="maze-field top right left " data-title="6/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top right left " data-title="7/0"></div>
+        <div class="maze-field top bottom left " data-title="7/1"></div>
+        <div class="maze-field right " data-title="7/2"></div>
+        <div class="maze-field top left " data-title="7/3"></div>
+        <div class="maze-field bottom " data-title="7/4"></div>
+        <div class="maze-field bottom " data-title="7/5"></div>
+        <div class="maze-field bottom " data-title="7/6"></div>
+        <div class="maze-field right bottom " data-title="7/7"></div>
+        <div class="maze-field top right left " data-title="7/8"></div>
+        <div class="maze-field left " data-title="7/9"></div>
+        <div class="maze-field right bottom " data-title="7/10"></div>
+        <div class="maze-field bottom left " data-title="7/11"></div>
+        <div class="maze-field right bottom " data-title="7/12"></div>
+        <div class="maze-field right left " data-title="7/13"></div>
+        <div class="maze-field top right left " data-title="7/14"></div>
+        <div class="maze-field right left " data-title="7/15"></div>
+        <div class="maze-field bottom left " data-title="7/16"></div>
+        <div class="maze-field top bottom " data-title="7/17"></div>
+        <div class="maze-field bottom " data-title="7/18"></div>
+        <div class="maze-field top " data-title="7/19"></div>
+        <div class="maze-field top right bottom " data-title="7/20"></div>
+        <div class="maze-field right left " data-title="7/21"></div>
+        <div class="maze-field right left " data-title="7/22"></div>
+        <div class="maze-field top right left " data-title="7/23"></div>
+        <div class="maze-field top bottom left " data-title="7/24"></div>
+        <div class="maze-field bottom " data-title="7/25"></div>
+        <div class="maze-field top right bottom " data-title="7/26"></div>
+        <div class="maze-field top left " data-title="7/27"></div>
+        <div class="maze-field bottom " data-title="7/28"></div>
+        <div class="maze-field top " data-title="7/29"></div>
+        <div class="maze-field right " data-title="7/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field bottom left " data-title="8/0"></div>
+        <div class="maze-field top " data-title="8/1"></div>
+        <div class="maze-field right " data-title="8/2"></div>
+        <div class="maze-field right left " data-title="8/3"></div>
+        <div class="maze-field top left " data-title="8/4"></div>
+        <div class="maze-field top right " data-title="8/5"></div>
+        <div class="maze-field top left " data-title="8/6"></div>
+        <div class="maze-field top right bottom " data-title="8/7"></div>
+        <div class="maze-field left " data-title="8/8"></div>
+        <div class="maze-field bottom " data-title="8/9"></div>
+        <div class="maze-field top " data-title="8/10"></div>
+        <div class="maze-field top " data-title="8/11"></div>
+        <div class="maze-field top right bottom " data-title="8/12"></div>
+        <div class="maze-field right left " data-title="8/13"></div>
+        <div class="maze-field left " data-title="8/14"></div>
+        <div class="maze-field bottom " data-title="8/15"></div>
+        <div class="maze-field top " data-title="8/16"></div>
+        <div class="maze-field top right bottom " data-title="8/17"></div>
+        <div class="maze-field top right left " data-title="8/18"></div>
+        <div class="maze-field right left " data-title="8/19"></div>
+        <div class="maze-field top left " data-title="8/20"></div>
+        <div class="maze-field " data-title="8/21"></div>
+        <div class="maze-field " data-title="8/22"></div>
+        <div class="maze-field " data-title="8/23"></div>
+        <div class="maze-field top " data-title="8/24"></div>
+        <div class="maze-field top bottom " data-title="8/25"></div>
+        <div class="maze-field top bottom " data-title="8/26"></div>
+        <div class="maze-field right " data-title="8/27"></div>
+        <div class="maze-field top bottom left " data-title="8/28"></div>
+        <div class="maze-field right bottom " data-title="8/29"></div>
+        <div class="maze-field right bottom left " data-title="8/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top bottom left " data-title="9/0"></div>
+        <div class="maze-field right " data-title="9/1"></div>
+        <div class="maze-field left " data-title="9/2"></div>
+        <div class="maze-field right bottom " data-title="9/3"></div>
+        <div class="maze-field right bottom left " data-title="9/4"></div>
+        <div class="maze-field bottom left " data-title="9/5"></div>
+        <div class="maze-field bottom " data-title="9/6"></div>
+        <div class="maze-field top bottom " data-title="9/7"></div>
+        <div class="maze-field bottom " data-title="9/8"></div>
+        <div class="maze-field top right " data-title="9/9"></div>
+        <div class="maze-field right left " data-title="9/10"></div>
+        <div class="maze-field left " data-title="9/11"></div>
+        <div class="maze-field top right " data-title="9/12"></div>
+        <div class="maze-field right left " data-title="9/13"></div>
+        <div class="maze-field bottom left " data-title="9/14"></div>
+        <div class="maze-field top right bottom " data-title="9/15"></div>
+        <div class="maze-field right left " data-title="9/16"></div>
+        <div class="maze-field top bottom left " data-title="9/17"></div>
+        <div class="maze-field right " data-title="9/18"></div>
+        <div class="maze-field bottom left " data-title="9/19"></div>
+        <div class="maze-field right " data-title="9/20"></div>
+        <div class="maze-field right bottom left " data-title="9/21"></div>
+        <div class="maze-field right left " data-title="9/22"></div>
+        <div class="maze-field right left " data-title="9/23"></div>
+        <div class="maze-field right bottom left " data-title="9/24"></div>
+        <div class="maze-field top bottom left " data-title="9/25"></div>
+        <div class="maze-field top right " data-title="9/26"></div>
+        <div class="maze-field left " data-title="9/27"></div>
+        <div class="maze-field top right bottom " data-title="9/28"></div>
+        <div class="maze-field top right left " data-title="9/29"></div>
+        <div class="maze-field top right left " data-title="9/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top right left " data-title="10/0"></div>
+        <div class="maze-field right left " data-title="10/1"></div>
+        <div class="maze-field right left " data-title="10/2"></div>
+        <div class="maze-field top right left " data-title="10/3"></div>
+        <div class="maze-field top left " data-title="10/4"></div>
+        <div class="maze-field top right bottom " data-title="10/5"></div>
+        <div class="maze-field top left " data-title="10/6"></div>
+        <div class="maze-field top right bottom " data-title="10/7"></div>
+        <div class="maze-field top right left " data-title="10/8"></div>
+        <div class="maze-field bottom left " data-title="10/9"></div>
+        <div class="maze-field bottom " data-title="10/10"></div>
+        <div class="maze-field right " data-title="10/11"></div>
+        <div class="maze-field right bottom left " data-title="10/12"></div>
+        <div class="maze-field bottom left " data-title="10/13"></div>
+        <div class="maze-field top right " data-title="10/14"></div>
+        <div class="maze-field top left " data-title="10/15"></div>
+        <div class="maze-field right " data-title="10/16"></div>
+        <div class="maze-field top bottom left " data-title="10/17"></div>
+        <div class="maze-field right " data-title="10/18"></div>
+        <div class="maze-field top right left " data-title="10/19"></div>
+        <div class="maze-field left " data-title="10/20"></div>
+        <div class="maze-field top right bottom " data-title="10/21"></div>
+        <div class="maze-field right left " data-title="10/22"></div>
+        <div class="maze-field right bottom left " data-title="10/23"></div>
+        <div class="maze-field top right left " data-title="10/24"></div>
+        <div class="maze-field top bottom left " data-title="10/25"></div>
+        <div class="maze-field bottom " data-title="10/26"></div>
+        <div class="maze-field right bottom " data-title="10/27"></div>
+        <div class="maze-field top bottom left " data-title="10/28"></div>
+        <div class="maze-field bottom " data-title="10/29"></div>
+        <div class="maze-field right " data-title="10/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="11/0"></div>
+        <div class="maze-field bottom left " data-title="11/1"></div>
+        <div class="maze-field " data-title="11/2"></div>
+        <div class="maze-field bottom " data-title="11/3"></div>
+        <div class="maze-field bottom " data-title="11/4"></div>
+        <div class="maze-field top right bottom " data-title="11/5"></div>
+        <div class="maze-field right left " data-title="11/6"></div>
+        <div class="maze-field top left " data-title="11/7"></div>
+        <div class="maze-field " data-title="11/8"></div>
+        <div class="maze-field top bottom " data-title="11/9"></div>
+        <div class="maze-field top " data-title="11/10"></div>
+        <div class="maze-field right bottom " data-title="11/11"></div>
+        <div class="maze-field top left " data-title="11/12"></div>
+        <div class="maze-field top " data-title="11/13"></div>
+        <div class="maze-field " data-title="11/14"></div>
+        <div class="maze-field right bottom " data-title="11/15"></div>
+        <div class="maze-field right bottom left " data-title="11/16"></div>
+        <div class="maze-field top bottom left " data-title="11/17"></div>
+        <div class="maze-field right " data-title="11/18"></div>
+        <div class="maze-field bottom left " data-title="11/19"></div>
+        <div class="maze-field right bottom " data-title="11/20"></div>
+        <div class="maze-field top left " data-title="11/21"></div>
+        <div class="maze-field bottom " data-title="11/22"></div>
+        <div class="maze-field top right " data-title="11/23"></div>
+        <div class="maze-field right left " data-title="11/24"></div>
+        <div class="maze-field top bottom left " data-title="11/25"></div>
+        <div class="maze-field top " data-title="11/26"></div>
+        <div class="maze-field top right " data-title="11/27"></div>
+        <div class="maze-field top left " data-title="11/28"></div>
+        <div class="maze-field top bottom " data-title="11/29"></div>
+        <div class="maze-field right " data-title="11/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field bottom left " data-title="12/0"></div>
+        <div class="maze-field top right " data-title="12/1"></div>
+        <div class="maze-field left " data-title="12/2"></div>
+        <div class="maze-field top bottom " data-title="12/3"></div>
+        <div class="maze-field top right bottom " data-title="12/4"></div>
+        <div class="maze-field top right left " data-title="12/5"></div>
+        <div class="maze-field right left " data-title="12/6"></div>
+        <div class="maze-field right left " data-title="12/7"></div>
+        <div class="maze-field right left " data-title="12/8"></div>
+        <div class="maze-field top left " data-title="12/9"></div>
+        <div class="maze-field " data-title="12/10"></div>
+        <div class="maze-field top right " data-title="12/11"></div>
+        <div class="maze-field right left " data-title="12/12"></div>
+        <div class="maze-field right left " data-title="12/13"></div>
+        <div class="maze-field right bottom left " data-title="12/14"></div>
+        <div class="maze-field top bottom left " data-title="12/15"></div>
+        <div class="maze-field top bottom " data-title="12/16"></div>
+        <div class="maze-field top " data-title="12/17"></div>
+        <div class="maze-field bottom " data-title="12/18"></div>
+        <div class="maze-field top bottom " data-title="12/19"></div>
+        <div class="maze-field top right " data-title="12/20"></div>
+        <div class="maze-field bottom left " data-title="12/21"></div>
+        <div class="maze-field top right " data-title="12/22"></div>
+        <div class="maze-field right bottom left " data-title="12/23"></div>
+        <div class="maze-field bottom left " data-title="12/24"></div>
+        <div class="maze-field top right " data-title="12/25"></div>
+        <div class="maze-field right left " data-title="12/26"></div>
+        <div class="maze-field bottom left " data-title="12/27"></div>
+        <div class="maze-field " data-title="12/28"></div>
+        <div class="maze-field top right bottom " data-title="12/29"></div>
+        <div class="maze-field right bottom left " data-title="12/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top right left " data-title="13/0"></div>
+        <div class="maze-field left " data-title="13/1"></div>
+        <div class="maze-field bottom " data-title="13/2"></div>
+        <div class="maze-field top bottom " data-title="13/3"></div>
+        <div class="maze-field top right bottom " data-title="13/4"></div>
+        <div class="maze-field left " data-title="13/5"></div>
+        <div class="maze-field " data-title="13/6"></div>
+        <div class="maze-field bottom " data-title="13/7"></div>
+        <div class="maze-field right " data-title="13/8"></div>
+        <div class="maze-field right bottom left " data-title="13/9"></div>
+        <div class="maze-field right bottom left " data-title="13/10"></div>
+        <div class="maze-field right bottom left " data-title="13/11"></div>
+        <div class="maze-field right bottom left " data-title="13/12"></div>
+        <div class="maze-field right left " data-title="13/13"></div>
+        <div class="maze-field top left " data-title="13/14"></div>
+        <div class="maze-field top bottom " data-title="13/15"></div>
+        <div class="maze-field top " data-title="13/16"></div>
+        <div class="maze-field right bottom " data-title="13/17"></div>
+        <div class="maze-field top right left " data-title="13/18"></div>
+        <div class="maze-field top right left " data-title="13/19"></div>
+        <div class="maze-field right bottom left " data-title="13/20"></div>
+        <div class="maze-field top right left " data-title="13/21"></div>
+        <div class="maze-field bottom left " data-title="13/22"></div>
+        <div class="maze-field top " data-title="13/23"></div>
+        <div class="maze-field top right bottom " data-title="13/24"></div>
+        <div class="maze-field right left " data-title="13/25"></div>
+        <div class="maze-field right bottom left " data-title="13/26"></div>
+        <div class="maze-field top right left " data-title="13/27"></div>
+        <div class="maze-field left " data-title="13/28"></div>
+        <div class="maze-field top right " data-title="13/29"></div>
+        <div class="maze-field top right left " data-title="13/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field bottom left " data-title="14/0"></div>
+        <div class="maze-field bottom " data-title="14/1"></div>
+        <div class="maze-field top right " data-title="14/2"></div>
+        <div class="maze-field top bottom left " data-title="14/3"></div>
+        <div class="maze-field top right " data-title="14/4"></div>
+        <div class="maze-field right bottom left " data-title="14/5"></div>
+        <div class="maze-field right left " data-title="14/6"></div>
+        <div class="maze-field top left " data-title="14/7"></div>
+        <div class="maze-field right bottom " data-title="14/8"></div>
+        <div class="maze-field top right left " data-title="14/9"></div>
+        <div class="maze-field top bottom left " data-title="14/10"></div>
+        <div class="maze-field top right " data-title="14/11"></div>
+        <div class="maze-field top bottom left " data-title="14/12"></div>
+        <div class="maze-field right " data-title="14/13"></div>
+        <div class="maze-field left " data-title="14/14"></div>
+        <div class="maze-field top right bottom " data-title="14/15"></div>
+        <div class="maze-field bottom left " data-title="14/16"></div>
+        <div class="maze-field top right " data-title="14/17"></div>
+        <div class="maze-field right left " data-title="14/18"></div>
+        <div class="maze-field left " data-title="14/19"></div>
+        <div class="maze-field top bottom " data-title="14/20"></div>
+        <div class="maze-field right bottom " data-title="14/21"></div>
+        <div class="maze-field top right left " data-title="14/22"></div>
+        <div class="maze-field right left " data-title="14/23"></div>
+        <div class="maze-field top bottom left " data-title="14/24"></div>
+        <div class="maze-field right " data-title="14/25"></div>
+        <div class="maze-field top left " data-title="14/26"></div>
+        <div class="maze-field right " data-title="14/27"></div>
+        <div class="maze-field right left " data-title="14/28"></div>
+        <div class="maze-field right bottom left " data-title="14/29"></div>
+        <div class="maze-field right left " data-title="14/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top right left " data-title="15/0"></div>
+        <div class="maze-field top left " data-title="15/1"></div>
+        <div class="maze-field bottom " data-title="15/2"></div>
+        <div class="maze-field top " data-title="15/3"></div>
+        <div class="maze-field right bottom " data-title="15/4"></div>
+        <div class="maze-field top left " data-title="15/5"></div>
+        <div class="maze-field " data-title="15/6"></div>
+        <div class="maze-field right " data-title="15/7"></div>
+        <div class="maze-field top left " data-title="15/8"></div>
+        <div class="maze-field right bottom " data-title="15/9"></div>
+        <div class="maze-field top right left " data-title="15/10"></div>
+        <div class="maze-field bottom left " data-title="15/11"></div>
+        <div class="maze-field top right " data-title="15/12"></div>
+        <div class="maze-field bottom left " data-title="15/13"></div>
+        <div class="maze-field " data-title="15/14"></div>
+        <div class="maze-field top right bottom " data-title="15/15"></div>
+        <div class="maze-field top bottom left " data-title="15/16"></div>
+        <div class="maze-field " data-title="15/17"></div>
+        <div class="maze-field right bottom " data-title="15/18"></div>
+        <div class="maze-field right left " data-title="15/19"></div>
+        <div class="maze-field top bottom left " data-title="15/20"></div>
+        <div class="maze-field top bottom " data-title="15/21"></div>
+        <div class="maze-field " data-title="15/22"></div>
+        <div class="maze-field bottom " data-title="15/23"></div>
+        <div class="maze-field top right bottom " data-title="15/24"></div>
+        <div class="maze-field right left " data-title="15/25"></div>
+        <div class="maze-field right left " data-title="15/26"></div>
+        <div class="maze-field right left " data-title="15/27"></div>
+        <div class="maze-field left " data-title="15/28"></div>
+        <div class="maze-field top bottom " data-title="15/29"></div>
+        <div class="maze-field right " data-title="15/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="16/0"></div>
+        <div class="maze-field right " data-title="16/1"></div>
+        <div class="maze-field top right left " data-title="16/2"></div>
+        <div class="maze-field right bottom left " data-title="16/3"></div>
+        <div class="maze-field top right left " data-title="16/4"></div>
+        <div class="maze-field right bottom left " data-title="16/5"></div>
+        <div class="maze-field right bottom left " data-title="16/6"></div>
+        <div class="maze-field bottom left " data-title="16/7"></div>
+        <div class="maze-field " data-title="16/8"></div>
+        <div class="maze-field top right bottom " data-title="16/9"></div>
+        <div class="maze-field left " data-title="16/10"></div>
+        <div class="maze-field top " data-title="16/11"></div>
+        <div class="maze-field " data-title="16/12"></div>
+        <div class="maze-field top bottom " data-title="16/13"></div>
+        <div class="maze-field right " data-title="16/14"></div>
+        <div class="maze-field top left " data-title="16/15"></div>
+        <div class="maze-field top right " data-title="16/16"></div>
+        <div class="maze-field right bottom left " data-title="16/17"></div>
+        <div class="maze-field top right left " data-title="16/18"></div>
+        <div class="maze-field left " data-title="16/19"></div>
+        <div class="maze-field top right " data-title="16/20"></div>
+        <div class="maze-field top right left " data-title="16/21"></div>
+        <div class="maze-field left " data-title="16/22"></div>
+        <div class="maze-field top right " data-title="16/23"></div>
+        <div class="maze-field top left " data-title="16/24"></div>
+        <div class="maze-field " data-title="16/25"></div>
+        <div class="maze-field right " data-title="16/26"></div>
+        <div class="maze-field bottom left " data-title="16/27"></div>
+        <div class="maze-field " data-title="16/28"></div>
+        <div class="maze-field top right bottom " data-title="16/29"></div>
+        <div class="maze-field right left " data-title="16/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right bottom left " data-title="17/0"></div>
+        <div class="maze-field left " data-title="17/1"></div>
+        <div class="maze-field right bottom " data-title="17/2"></div>
+        <div class="maze-field top right left " data-title="17/3"></div>
+        <div class="maze-field left " data-title="17/4"></div>
+        <div class="maze-field top bottom " data-title="17/5"></div>
+        <div class="maze-field top right " data-title="17/6"></div>
+        <div class="maze-field top left " data-title="17/7"></div>
+        <div class="maze-field right " data-title="17/8"></div>
+        <div class="maze-field top bottom left " data-title="17/9"></div>
+        <div class="maze-field right bottom " data-title="17/10"></div>
+        <div class="maze-field right bottom left " data-title="17/11"></div>
+        <div class="maze-field left " data-title="17/12"></div>
+        <div class="maze-field top right bottom " data-title="17/13"></div>
+        <div class="maze-field right bottom left " data-title="17/14"></div>
+        <div class="maze-field right left " data-title="17/15"></div>
+        <div class="maze-field bottom left " data-title="17/16"></div>
+        <div class="maze-field top bottom " data-title="17/17"></div>
+        <div class="maze-field right " data-title="17/18"></div>
+        <div class="maze-field right left " data-title="17/19"></div>
+        <div class="maze-field right bottom left " data-title="17/20"></div>
+        <div class="maze-field right left " data-title="17/21"></div>
+        <div class="maze-field right left " data-title="17/22"></div>
+        <div class="maze-field right left " data-title="17/23"></div>
+        <div class="maze-field right left " data-title="17/24"></div>
+        <div class="maze-field right bottom left " data-title="17/25"></div>
+        <div class="maze-field left " data-title="17/26"></div>
+        <div class="maze-field top " data-title="17/27"></div>
+        <div class="maze-field bottom " data-title="17/28"></div>
+        <div class="maze-field top bottom " data-title="17/29"></div>
+        <div class="maze-field right bottom " data-title="17/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top right left " data-title="18/0"></div>
+        <div class="maze-field left " data-title="18/1"></div>
+        <div class="maze-field top bottom " data-title="18/2"></div>
+        <div class="maze-field bottom " data-title="18/3"></div>
+        <div class="maze-field right bottom " data-title="18/4"></div>
+        <div class="maze-field top right left " data-title="18/5"></div>
+        <div class="maze-field right bottom left " data-title="18/6"></div>
+        <div class="maze-field right bottom left " data-title="18/7"></div>
+        <div class="maze-field left " data-title="18/8"></div>
+        <div class="maze-field top bottom " data-title="18/9"></div>
+        <div class="maze-field top right bottom " data-title="18/10"></div>
+        <div class="maze-field top left " data-title="18/11"></div>
+        <div class="maze-field right " data-title="18/12"></div>
+        <div class="maze-field top left " data-title="18/13"></div>
+        <div class="maze-field top right " data-title="18/14"></div>
+        <div class="maze-field left " data-title="18/15"></div>
+        <div class="maze-field top bottom " data-title="18/16"></div>
+        <div class="maze-field top right bottom " data-title="18/17"></div>
+        <div class="maze-field left " data-title="18/18"></div>
+        <div class="maze-field bottom " data-title="18/19"></div>
+        <div class="maze-field top " data-title="18/20"></div>
+        <div class="maze-field right " data-title="18/21"></div>
+        <div class="maze-field right bottom left " data-title="18/22"></div>
+        <div class="maze-field right bottom left " data-title="18/23"></div>
+        <div class="maze-field left " data-title="18/24"></div>
+        <div class="maze-field top right " data-title="18/25"></div>
+        <div class="maze-field right bottom left " data-title="18/26"></div>
+        <div class="maze-field left " data-title="18/27"></div>
+        <div class="maze-field top right bottom " data-title="18/28"></div>
+        <div class="maze-field top bottom left " data-title="18/29"></div>
+        <div class="maze-field top right " data-title="18/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="19/0"></div>
+        <div class="maze-field bottom " data-title="19/1"></div>
+        <div class="maze-field top right bottom " data-title="19/2"></div>
+        <div class="maze-field top bottom left " data-title="19/3"></div>
+        <div class="maze-field top " data-title="19/4"></div>
+        <div class="maze-field bottom " data-title="19/5"></div>
+        <div class="maze-field top right bottom " data-title="19/6"></div>
+        <div class="maze-field top bottom left " data-title="19/7"></div>
+        <div class="maze-field right " data-title="19/8"></div>
+        <div class="maze-field top bottom left " data-title="19/9"></div>
+        <div class="maze-field top right " data-title="19/10"></div>
+        <div class="maze-field right left " data-title="19/11"></div>
+        <div class="maze-field bottom left " data-title="19/12"></div>
+        <div class="maze-field right bottom " data-title="19/13"></div>
+        <div class="maze-field left " data-title="19/14"></div>
+        <div class="maze-field bottom " data-title="19/15"></div>
+        <div class="maze-field top right bottom " data-title="19/16"></div>
+        <div class="maze-field top left " data-title="19/17"></div>
+        <div class="maze-field right " data-title="19/18"></div>
+        <div class="maze-field top right left " data-title="19/19"></div>
+        <div class="maze-field right left " data-title="19/20"></div>
+        <div class="maze-field left " data-title="19/21"></div>
+        <div class="maze-field top bottom " data-title="19/22"></div>
+        <div class="maze-field top right bottom " data-title="19/23"></div>
+        <div class="maze-field right bottom left " data-title="19/24"></div>
+        <div class="maze-field left " data-title="19/25"></div>
+        <div class="maze-field top " data-title="19/26"></div>
+        <div class="maze-field bottom " data-title="19/27"></div>
+        <div class="maze-field top right " data-title="19/28"></div>
+        <div class="maze-field top left " data-title="19/29"></div>
+        <div class="maze-field right bottom " data-title="19/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="20/0"></div>
+        <div class="maze-field top bottom left " data-title="20/1"></div>
+        <div class="maze-field top right " data-title="20/2"></div>
+        <div class="maze-field top right left " data-title="20/3"></div>
+        <div class="maze-field left " data-title="20/4"></div>
+        <div class="maze-field top right bottom " data-title="20/5"></div>
+        <div class="maze-field top bottom left " data-title="20/6"></div>
+        <div class="maze-field top bottom " data-title="20/7"></div>
+        <div class="maze-field right " data-title="20/8"></div>
+        <div class="maze-field top left " data-title="20/9"></div>
+        <div class="maze-field right " data-title="20/10"></div>
+        <div class="maze-field right left " data-title="20/11"></div>
+        <div class="maze-field top bottom left " data-title="20/12"></div>
+        <div class="maze-field top right " data-title="20/13"></div>
+        <div class="maze-field left " data-title="20/14"></div>
+        <div class="maze-field top right bottom " data-title="20/15"></div>
+        <div class="maze-field top bottom left " data-title="20/16"></div>
+        <div class="maze-field right " data-title="20/17"></div>
+        <div class="maze-field right bottom left " data-title="20/18"></div>
+        <div class="maze-field right left " data-title="20/19"></div>
+        <div class="maze-field right bottom left " data-title="20/20"></div>
+        <div class="maze-field bottom left " data-title="20/21"></div>
+        <div class="maze-field top right " data-title="20/22"></div>
+        <div class="maze-field top bottom left " data-title="20/23"></div>
+        <div class="maze-field top bottom " data-title="20/24"></div>
+        <div class="maze-field right " data-title="20/25"></div>
+        <div class="maze-field right bottom left " data-title="20/26"></div>
+        <div class="maze-field top right left " data-title="20/27"></div>
+        <div class="maze-field right bottom left " data-title="20/28"></div>
+        <div class="maze-field right left " data-title="20/29"></div>
+        <div class="maze-field top right left " data-title="20/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="21/0"></div>
+        <div class="maze-field top right left " data-title="21/1"></div>
+        <div class="maze-field left " data-title="21/2"></div>
+        <div class="maze-field bottom " data-title="21/3"></div>
+        <div class="maze-field bottom " data-title="21/4"></div>
+        <div class="maze-field top right bottom " data-title="21/5"></div>
+        <div class="maze-field top left " data-title="21/6"></div>
+        <div class="maze-field top right bottom " data-title="21/7"></div>
+        <div class="maze-field bottom left " data-title="21/8"></div>
+        <div class="maze-field right " data-title="21/9"></div>
+        <div class="maze-field left " data-title="21/10"></div>
+        <div class="maze-field " data-title="21/11"></div>
+        <div class="maze-field top right bottom " data-title="21/12"></div>
+        <div class="maze-field bottom left " data-title="21/13"></div>
+        <div class="maze-field right bottom " data-title="21/14"></div>
+        <div class="maze-field top right left " data-title="21/15"></div>
+        <div class="maze-field top bottom left " data-title="21/16"></div>
+        <div class="maze-field right bottom " data-title="21/17"></div>
+        <div class="maze-field top left " data-title="21/18"></div>
+        <div class="maze-field " data-title="21/19"></div>
+        <div class="maze-field top " data-title="21/20"></div>
+        <div class="maze-field top right bottom " data-title="21/21"></div>
+        <div class="maze-field bottom left " data-title="21/22"></div>
+        <div class="maze-field top bottom " data-title="21/23"></div>
+        <div class="maze-field top bottom " data-title="21/24"></div>
+        <div class="maze-field right bottom " data-title="21/25"></div>
+        <div class="maze-field top left " data-title="21/26"></div>
+        <div class="maze-field " data-title="21/27"></div>
+        <div class="maze-field top bottom " data-title="21/28"></div>
+        <div class="maze-field right bottom " data-title="21/29"></div>
+        <div class="maze-field right left " data-title="21/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="22/0"></div>
+        <div class="maze-field bottom " data-title="22/1"></div>
+        <div class="maze-field " data-title="22/2"></div>
+        <div class="maze-field top right " data-title="22/3"></div>
+        <div class="maze-field top right left " data-title="22/4"></div>
+        <div class="maze-field top right left " data-title="22/5"></div>
+        <div class="maze-field right left " data-title="22/6"></div>
+        <div class="maze-field top left " data-title="22/7"></div>
+        <div class="maze-field top right bottom " data-title="22/8"></div>
+        <div class="maze-field left " data-title="22/9"></div>
+        <div class="maze-field right " data-title="22/10"></div>
+        <div class="maze-field right left " data-title="22/11"></div>
+        <div class="maze-field top bottom left " data-title="22/12"></div>
+        <div class="maze-field top right " data-title="22/13"></div>
+        <div class="maze-field top left " data-title="22/14"></div>
+        <div class="maze-field right " data-title="22/15"></div>
+        <div class="maze-field top left " data-title="22/16"></div>
+        <div class="maze-field top bottom " data-title="22/17"></div>
+        <div class="maze-field right " data-title="22/18"></div>
+        <div class="maze-field right left " data-title="22/19"></div>
+        <div class="maze-field bottom left " data-title="22/20"></div>
+        <div class="maze-field top bottom " data-title="22/21"></div>
+        <div class="maze-field top right bottom " data-title="22/22"></div>
+        <div class="maze-field top right left " data-title="22/23"></div>
+        <div class="maze-field top left " data-title="22/24"></div>
+        <div class="maze-field top bottom " data-title="22/25"></div>
+        <div class="maze-field right bottom " data-title="22/26"></div>
+        <div class="maze-field right left " data-title="22/27"></div>
+        <div class="maze-field top left " data-title="22/28"></div>
+        <div class="maze-field top right " data-title="22/29"></div>
+        <div class="maze-field right left " data-title="22/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="23/0"></div>
+        <div class="maze-field top right bottom " data-title="23/1"></div>
+        <div class="maze-field right bottom left " data-title="23/2"></div>
+        <div class="maze-field right bottom left " data-title="23/3"></div>
+        <div class="maze-field left " data-title="23/4"></div>
+        <div class="maze-field right " data-title="23/5"></div>
+        <div class="maze-field bottom left " data-title="23/6"></div>
+        <div class="maze-field " data-title="23/7"></div>
+        <div class="maze-field top bottom " data-title="23/8"></div>
+        <div class="maze-field right " data-title="23/9"></div>
+        <div class="maze-field right left " data-title="23/10"></div>
+        <div class="maze-field bottom left " data-title="23/11"></div>
+        <div class="maze-field top right " data-title="23/12"></div>
+        <div class="maze-field right left " data-title="23/13"></div>
+        <div class="maze-field right left " data-title="23/14"></div>
+        <div class="maze-field right bottom left " data-title="23/15"></div>
+        <div class="maze-field right left " data-title="23/16"></div>
+        <div class="maze-field top bottom left " data-title="23/17"></div>
+        <div class="maze-field bottom " data-title="23/18"></div>
+        <div class="maze-field right bottom " data-title="23/19"></div>
+        <div class="maze-field top left " data-title="23/20"></div>
+        <div class="maze-field top right bottom " data-title="23/21"></div>
+        <div class="maze-field top bottom left " data-title="23/22"></div>
+        <div class="maze-field bottom " data-title="23/23"></div>
+        <div class="maze-field " data-title="23/24"></div>
+        <div class="maze-field top right " data-title="23/25"></div>
+        <div class="maze-field top bottom left " data-title="23/26"></div>
+        <div class="maze-field right " data-title="23/27"></div>
+        <div class="maze-field right bottom left " data-title="23/28"></div>
+        <div class="maze-field bottom left " data-title="23/29"></div>
+        <div class="maze-field right " data-title="23/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="24/0"></div>
+        <div class="maze-field top bottom " data-title="24/1"></div>
+        <div class="maze-field top " data-title="24/2"></div>
+        <div class="maze-field top right bottom " data-title="24/3"></div>
+        <div class="maze-field right left " data-title="24/4"></div>
+        <div class="maze-field bottom left " data-title="24/5"></div>
+        <div class="maze-field top " data-title="24/6"></div>
+        <div class="maze-field bottom " data-title="24/7"></div>
+        <div class="maze-field top right " data-title="24/8"></div>
+        <div class="maze-field right left " data-title="24/9"></div>
+        <div class="maze-field right left " data-title="24/10"></div>
+        <div class="maze-field top bottom left " data-title="24/11"></div>
+        <div class="maze-field right " data-title="24/12"></div>
+        <div class="maze-field bottom left " data-title="24/13"></div>
+        <div class="maze-field right " data-title="24/14"></div>
+        <div class="maze-field top left " data-title="24/15"></div>
+        <div class="maze-field right " data-title="24/16"></div>
+        <div class="maze-field top right left " data-title="24/17"></div>
+        <div class="maze-field top bottom left " data-title="24/18"></div>
+        <div class="maze-field top " data-title="24/19"></div>
+        <div class="maze-field " data-title="24/20"></div>
+        <div class="maze-field top right bottom " data-title="24/21"></div>
+        <div class="maze-field top right left " data-title="24/22"></div>
+        <div class="maze-field top left " data-title="24/23"></div>
+        <div class="maze-field right bottom " data-title="24/24"></div>
+        <div class="maze-field bottom left " data-title="24/25"></div>
+        <div class="maze-field top right bottom " data-title="24/26"></div>
+        <div class="maze-field right bottom left " data-title="24/27"></div>
+        <div class="maze-field top left " data-title="24/28"></div>
+        <div class="maze-field top right bottom " data-title="24/29"></div>
+        <div class="maze-field right left " data-title="24/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="25/0"></div>
+        <div class="maze-field top right left " data-title="25/1"></div>
+        <div class="maze-field right bottom left " data-title="25/2"></div>
+        <div class="maze-field top right left " data-title="25/3"></div>
+        <div class="maze-field right bottom left " data-title="25/4"></div>
+        <div class="maze-field top right left " data-title="25/5"></div>
+        <div class="maze-field left " data-title="25/6"></div>
+        <div class="maze-field top right " data-title="25/7"></div>
+        <div class="maze-field bottom left " data-title="25/8"></div>
+        <div class="maze-field right " data-title="25/9"></div>
+        <div class="maze-field right bottom left " data-title="25/10"></div>
+        <div class="maze-field top right left " data-title="25/11"></div>
+        <div class="maze-field right bottom left " data-title="25/12"></div>
+        <div class="maze-field top bottom left " data-title="25/13"></div>
+        <div class="maze-field " data-title="25/14"></div>
+        <div class="maze-field right bottom " data-title="25/15"></div>
+        <div class="maze-field bottom left " data-title="25/16"></div>
+        <div class="maze-field right bottom " data-title="25/17"></div>
+        <div class="maze-field top right left " data-title="25/18"></div>
+        <div class="maze-field right left " data-title="25/19"></div>
+        <div class="maze-field left " data-title="25/20"></div>
+        <div class="maze-field top right bottom " data-title="25/21"></div>
+        <div class="maze-field left " data-title="25/22"></div>
+        <div class="maze-field right bottom " data-title="25/23"></div>
+        <div class="maze-field top left " data-title="25/24"></div>
+        <div class="maze-field top bottom " data-title="25/25"></div>
+        <div class="maze-field top bottom " data-title="25/26"></div>
+        <div class="maze-field top bottom " data-title="25/27"></div>
+        <div class="maze-field bottom " data-title="25/28"></div>
+        <div class="maze-field top bottom " data-title="25/29"></div>
+        <div class="maze-field right bottom " data-title="25/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="26/0"></div>
+        <div class="maze-field bottom " data-title="26/1"></div>
+        <div class="maze-field top right bottom " data-title="26/2"></div>
+        <div class="maze-field bottom left " data-title="26/3"></div>
+        <div class="maze-field top right " data-title="26/4"></div>
+        <div class="maze-field bottom left " data-title="26/5"></div>
+        <div class="maze-field right " data-title="26/6"></div>
+        <div class="maze-field left " data-title="26/7"></div>
+        <div class="maze-field top " data-title="26/8"></div>
+        <div class="maze-field bottom " data-title="26/9"></div>
+        <div class="maze-field top " data-title="26/10"></div>
+        <div class="maze-field " data-title="26/11"></div>
+        <div class="maze-field top bottom " data-title="26/12"></div>
+        <div class="maze-field top " data-title="26/13"></div>
+        <div class="maze-field " data-title="26/14"></div>
+        <div class="maze-field top bottom " data-title="26/15"></div>
+        <div class="maze-field top bottom " data-title="26/16"></div>
+        <div class="maze-field top " data-title="26/17"></div>
+        <div class="maze-field right bottom " data-title="26/18"></div>
+        <div class="maze-field right left " data-title="26/19"></div>
+        <div class="maze-field left " data-title="26/20"></div>
+        <div class="maze-field top " data-title="26/21"></div>
+        <div class="maze-field " data-title="26/22"></div>
+        <div class="maze-field top " data-title="26/23"></div>
+        <div class="maze-field bottom " data-title="26/24"></div>
+        <div class="maze-field top " data-title="26/25"></div>
+        <div class="maze-field top " data-title="26/26"></div>
+        <div class="maze-field top " data-title="26/27"></div>
+        <div class="maze-field top bottom " data-title="26/28"></div>
+        <div class="maze-field top " data-title="26/29"></div>
+        <div class="maze-field top right " data-title="26/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="27/0"></div>
+        <div class="maze-field top bottom " data-title="27/1"></div>
+        <div class="maze-field top right bottom " data-title="27/2"></div>
+        <div class="maze-field top bottom left " data-title="27/3"></div>
+        <div class="maze-field bottom " data-title="27/4"></div>
+        <div class="maze-field top bottom " data-title="27/5"></div>
+        <div class="maze-field " data-title="27/6"></div>
+        <div class="maze-field right " data-title="27/7"></div>
+        <div class="maze-field bottom left " data-title="27/8"></div>
+        <div class="maze-field top right " data-title="27/9"></div>
+        <div class="maze-field right left " data-title="27/10"></div>
+        <div class="maze-field bottom left " data-title="27/11"></div>
+        <div class="maze-field top right " data-title="27/12"></div>
+        <div class="maze-field right bottom left " data-title="27/13"></div>
+        <div class="maze-field bottom left " data-title="27/14"></div>
+        <div class="maze-field top right bottom " data-title="27/15"></div>
+        <div class="maze-field top right left " data-title="27/16"></div>
+        <div class="maze-field right bottom left " data-title="27/17"></div>
+        <div class="maze-field top right left " data-title="27/18"></div>
+        <div class="maze-field bottom left " data-title="27/19"></div>
+        <div class="maze-field right " data-title="27/20"></div>
+        <div class="maze-field right left " data-title="27/21"></div>
+        <div class="maze-field right bottom left " data-title="27/22"></div>
+        <div class="maze-field right bottom left " data-title="27/23"></div>
+        <div class="maze-field top bottom left " data-title="27/24"></div>
+        <div class="maze-field right bottom " data-title="27/25"></div>
+        <div class="maze-field right left " data-title="27/26"></div>
+        <div class="maze-field left " data-title="27/27"></div>
+        <div class="maze-field top right bottom " data-title="27/28"></div>
+        <div class="maze-field right left " data-title="27/29"></div>
+        <div class="maze-field right left " data-title="27/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="28/0"></div>
+        <div class="maze-field top right left " data-title="28/1"></div>
+        <div class="maze-field top left " data-title="28/2"></div>
+        <div class="maze-field top bottom " data-title="28/3"></div>
+        <div class="maze-field top right " data-title="28/4"></div>
+        <div class="maze-field top left " data-title="28/5"></div>
+        <div class="maze-field right " data-title="28/6"></div>
+        <div class="maze-field right left " data-title="28/7"></div>
+        <div class="maze-field top left " data-title="28/8"></div>
+        <div class="maze-field right bottom " data-title="28/9"></div>
+        <div class="maze-field bottom left " data-title="28/10"></div>
+        <div class="maze-field top bottom " data-title="28/11"></div>
+        <div class="maze-field right " data-title="28/12"></div>
+        <div class="maze-field top left " data-title="28/13"></div>
+        <div class="maze-field top right bottom " data-title="28/14"></div>
+        <div class="maze-field top left " data-title="28/15"></div>
+        <div class="maze-field " data-title="28/16"></div>
+        <div class="maze-field top bottom " data-title="28/17"></div>
+        <div class="maze-field bottom " data-title="28/18"></div>
+        <div class="maze-field top " data-title="28/19"></div>
+        <div class="maze-field right bottom " data-title="28/20"></div>
+        <div class="maze-field right bottom left " data-title="28/21"></div>
+        <div class="maze-field top left " data-title="28/22"></div>
+        <div class="maze-field top right bottom " data-title="28/23"></div>
+        <div class="maze-field top bottom left " data-title="28/24"></div>
+        <div class="maze-field top bottom " data-title="28/25"></div>
+        <div class="maze-field right bottom " data-title="28/26"></div>
+        <div class="maze-field left " data-title="28/27"></div>
+        <div class="maze-field top right bottom " data-title="28/28"></div>
+        <div class="maze-field right bottom left " data-title="28/29"></div>
+        <div class="maze-field right left " data-title="28/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="29/0"></div>
+        <div class="maze-field right bottom " data-title="29/1"></div>
+        <div class="maze-field bottom left " data-title="29/2"></div>
+        <div class="maze-field top right bottom " data-title="29/3"></div>
+        <div class="maze-field right left " data-title="29/4"></div>
+        <div class="maze-field right bottom left " data-title="29/5"></div>
+        <div class="maze-field right bottom left " data-title="29/6"></div>
+        <div class="maze-field left " data-title="29/7"></div>
+        <div class="maze-field " data-title="29/8"></div>
+        <div class="maze-field top bottom " data-title="29/9"></div>
+        <div class="maze-field top " data-title="29/10"></div>
+        <div class="maze-field top right " data-title="29/11"></div>
+        <div class="maze-field right left " data-title="29/12"></div>
+        <div class="maze-field right left " data-title="29/13"></div>
+        <div class="maze-field top left " data-title="29/14"></div>
+        <div class="maze-field right bottom " data-title="29/15"></div>
+        <div class="maze-field bottom left " data-title="29/16"></div>
+        <div class="maze-field top right " data-title="29/17"></div>
+        <div class="maze-field top bottom left " data-title="29/18"></div>
+        <div class="maze-field right " data-title="29/19"></div>
+        <div class="maze-field top right left " data-title="29/20"></div>
+        <div class="maze-field top left " data-title="29/21"></div>
+        <div class="maze-field right " data-title="29/22"></div>
+        <div class="maze-field top bottom left " data-title="29/23"></div>
+        <div class="maze-field top right " data-title="29/24"></div>
+        <div class="maze-field top left " data-title="29/25"></div>
+        <div class="maze-field top right bottom " data-title="29/26"></div>
+        <div class="maze-field right bottom left " data-title="29/27"></div>
+        <div class="maze-field top right left " data-title="29/28"></div>
+        <div class="maze-field top left " data-title="29/29"></div>
+        <div class="maze-field right bottom " data-title="29/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="30/0"></div>
+        <div class="maze-field top " data-title="30/1"></div>
+        <div class="maze-field top right " data-title="30/2"></div>
+        <div class="maze-field top bottom left " data-title="30/3"></div>
+        <div class="maze-field right " data-title="30/4"></div>
+        <div class="maze-field top left " data-title="30/5"></div>
+        <div class="maze-field top right " data-title="30/6"></div>
+        <div class="maze-field right bottom left " data-title="30/7"></div>
+        <div class="maze-field left " data-title="30/8"></div>
+        <div class="maze-field top right " data-title="30/9"></div>
+        <div class="maze-field right left " data-title="30/10"></div>
+        <div class="maze-field bottom left " data-title="30/11"></div>
+        <div class="maze-field right " data-title="30/12"></div>
+        <div class="maze-field bottom left " data-title="30/13"></div>
+        <div class="maze-field bottom " data-title="30/14"></div>
+        <div class="maze-field top " data-title="30/15"></div>
+        <div class="maze-field top right " data-title="30/16"></div>
+        <div class="maze-field right left " data-title="30/17"></div>
+        <div class="maze-field top left " data-title="30/18"></div>
+        <div class="maze-field right " data-title="30/19"></div>
+        <div class="maze-field right left " data-title="30/20"></div>
+        <div class="maze-field right left " data-title="30/21"></div>
+        <div class="maze-field left " data-title="30/22"></div>
+        <div class="maze-field top right bottom " data-title="30/23"></div>
+        <div class="maze-field left " data-title="30/24"></div>
+        <div class="maze-field " data-title="30/25"></div>
+        <div class="maze-field top bottom " data-title="30/26"></div>
+        <div class="maze-field top right " data-title="30/27"></div>
+        <div class="maze-field bottom left " data-title="30/28"></div>
+        <div class="maze-field right bottom " data-title="30/29"></div>
+        <div class="maze-field top right left " data-title="30/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="31/0"></div>
+        <div class="maze-field right bottom left " data-title="31/1"></div>
+        <div class="maze-field right bottom left " data-title="31/2"></div>
+        <div class="maze-field top bottom left " data-title="31/3"></div>
+        <div class="maze-field right " data-title="31/4"></div>
+        <div class="maze-field right bottom left " data-title="31/5"></div>
+        <div class="maze-field right left " data-title="31/6"></div>
+        <div class="maze-field top right left " data-title="31/7"></div>
+        <div class="maze-field right left " data-title="31/8"></div>
+        <div class="maze-field right left " data-title="31/9"></div>
+        <div class="maze-field left " data-title="31/10"></div>
+        <div class="maze-field top right bottom " data-title="31/11"></div>
+        <div class="maze-field right bottom left " data-title="31/12"></div>
+        <div class="maze-field top left " data-title="31/13"></div>
+        <div class="maze-field top right bottom " data-title="31/14"></div>
+        <div class="maze-field right left " data-title="31/15"></div>
+        <div class="maze-field bottom left " data-title="31/16"></div>
+        <div class="maze-field right " data-title="31/17"></div>
+        <div class="maze-field right bottom left " data-title="31/18"></div>
+        <div class="maze-field left " data-title="31/19"></div>
+        <div class="maze-field right bottom " data-title="31/20"></div>
+        <div class="maze-field bottom left " data-title="31/21"></div>
+        <div class="maze-field right " data-title="31/22"></div>
+        <div class="maze-field top right left " data-title="31/23"></div>
+        <div class="maze-field right left " data-title="31/24"></div>
+        <div class="maze-field bottom left " data-title="31/25"></div>
+        <div class="maze-field top right bottom " data-title="31/26"></div>
+        <div class="maze-field bottom left " data-title="31/27"></div>
+        <div class="maze-field top bottom " data-title="31/28"></div>
+        <div class="maze-field top bottom " data-title="31/29"></div>
+        <div class="maze-field right bottom " data-title="31/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="32/0"></div>
+        <div class="maze-field top " data-title="32/1"></div>
+        <div class="maze-field top right bottom " data-title="32/2"></div>
+        <div class="maze-field top right left " data-title="32/3"></div>
+        <div class="maze-field right left " data-title="32/4"></div>
+        <div class="maze-field top left " data-title="32/5"></div>
+        <div class="maze-field bottom " data-title="32/6"></div>
+        <div class="maze-field bottom " data-title="32/7"></div>
+        <div class="maze-field bottom " data-title="32/8"></div>
+        <div class="maze-field right " data-title="32/9"></div>
+        <div class="maze-field right bottom left " data-title="32/10"></div>
+        <div class="maze-field top right left " data-title="32/11"></div>
+        <div class="maze-field top left " data-title="32/12"></div>
+        <div class="maze-field bottom " data-title="32/13"></div>
+        <div class="maze-field top right " data-title="32/14"></div>
+        <div class="maze-field right left " data-title="32/15"></div>
+        <div class="maze-field top left " data-title="32/16"></div>
+        <div class="maze-field bottom " data-title="32/17"></div>
+        <div class="maze-field top right " data-title="32/18"></div>
+        <div class="maze-field bottom left " data-title="32/19"></div>
+        <div class="maze-field top bottom " data-title="32/20"></div>
+        <div class="maze-field top " data-title="32/21"></div>
+        <div class="maze-field right bottom " data-title="32/22"></div>
+        <div class="maze-field left " data-title="32/23"></div>
+        <div class="maze-field bottom " data-title="32/24"></div>
+        <div class="maze-field top bottom " data-title="32/25"></div>
+        <div class="maze-field top right " data-title="32/26"></div>
+        <div class="maze-field top right left " data-title="32/27"></div>
+        <div class="maze-field top left " data-title="32/28"></div>
+        <div class="maze-field top bottom " data-title="32/29"></div>
+        <div class="maze-field top right " data-title="32/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="33/0"></div>
+        <div class="maze-field bottom left " data-title="33/1"></div>
+        <div class="maze-field top right bottom " data-title="33/2"></div>
+        <div class="maze-field right left " data-title="33/3"></div>
+        <div class="maze-field left " data-title="33/4"></div>
+        <div class="maze-field " data-title="33/5"></div>
+        <div class="maze-field top bottom " data-title="33/6"></div>
+        <div class="maze-field top right bottom " data-title="33/7"></div>
+        <div class="maze-field top right left " data-title="33/8"></div>
+        <div class="maze-field bottom left " data-title="33/9"></div>
+        <div class="maze-field top " data-title="33/10"></div>
+        <div class="maze-field right bottom " data-title="33/11"></div>
+        <div class="maze-field left " data-title="33/12"></div>
+        <div class="maze-field top " data-title="33/13"></div>
+        <div class="maze-field bottom " data-title="33/14"></div>
+        <div class="maze-field bottom " data-title="33/15"></div>
+        <div class="maze-field bottom " data-title="33/16"></div>
+        <div class="maze-field top " data-title="33/17"></div>
+        <div class="maze-field right bottom " data-title="33/18"></div>
+        <div class="maze-field top bottom left " data-title="33/19"></div>
+        <div class="maze-field top right " data-title="33/20"></div>
+        <div class="maze-field bottom left " data-title="33/21"></div>
+        <div class="maze-field top right bottom " data-title="33/22"></div>
+        <div class="maze-field right left " data-title="33/23"></div>
+        <div class="maze-field top left " data-title="33/24"></div>
+        <div class="maze-field top right bottom " data-title="33/25"></div>
+        <div class="maze-field right bottom left " data-title="33/26"></div>
+        <div class="maze-field left " data-title="33/27"></div>
+        <div class="maze-field " data-title="33/28"></div>
+        <div class="maze-field top bottom " data-title="33/29"></div>
+        <div class="maze-field right bottom " data-title="33/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="34/0"></div>
+        <div class="maze-field top left " data-title="34/1"></div>
+        <div class="maze-field top bottom " data-title="34/2"></div>
+        <div class="maze-field bottom " data-title="34/3"></div>
+        <div class="maze-field right bottom " data-title="34/4"></div>
+        <div class="maze-field left " data-title="34/5"></div>
+        <div class="maze-field top " data-title="34/6"></div>
+        <div class="maze-field top " data-title="34/7"></div>
+        <div class="maze-field bottom " data-title="34/8"></div>
+        <div class="maze-field top right " data-title="34/9"></div>
+        <div class="maze-field right bottom left " data-title="34/10"></div>
+        <div class="maze-field top left " data-title="34/11"></div>
+        <div class="maze-field right " data-title="34/12"></div>
+        <div class="maze-field right bottom left " data-title="34/13"></div>
+        <div class="maze-field top left " data-title="34/14"></div>
+        <div class="maze-field top " data-title="34/15"></div>
+        <div class="maze-field top right bottom " data-title="34/16"></div>
+        <div class="maze-field right bottom left " data-title="34/17"></div>
+        <div class="maze-field top right left " data-title="34/18"></div>
+        <div class="maze-field top left " data-title="34/19"></div>
+        <div class="maze-field bottom " data-title="34/20"></div>
+        <div class="maze-field top right " data-title="34/21"></div>
+        <div class="maze-field top bottom left " data-title="34/22"></div>
+        <div class="maze-field " data-title="34/23"></div>
+        <div class="maze-field bottom " data-title="34/24"></div>
+        <div class="maze-field top bottom " data-title="34/25"></div>
+        <div class="maze-field top bottom " data-title="34/26"></div>
+        <div class="maze-field right " data-title="34/27"></div>
+        <div class="maze-field right bottom left " data-title="34/28"></div>
+        <div class="maze-field top left " data-title="34/29"></div>
+        <div class="maze-field top right bottom " data-title="34/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="35/0"></div>
+        <div class="maze-field right left " data-title="35/1"></div>
+        <div class="maze-field top left " data-title="35/2"></div>
+        <div class="maze-field top bottom " data-title="35/3"></div>
+        <div class="maze-field top right " data-title="35/4"></div>
+        <div class="maze-field right left " data-title="35/5"></div>
+        <div class="maze-field right left " data-title="35/6"></div>
+        <div class="maze-field right left " data-title="35/7"></div>
+        <div class="maze-field top right left " data-title="35/8"></div>
+        <div class="maze-field right left " data-title="35/9"></div>
+        <div class="maze-field top right left " data-title="35/10"></div>
+        <div class="maze-field right left " data-title="35/11"></div>
+        <div class="maze-field bottom left " data-title="35/12"></div>
+        <div class="maze-field top " data-title="35/13"></div>
+        <div class="maze-field right bottom " data-title="35/14"></div>
+        <div class="maze-field left " data-title="35/15"></div>
+        <div class="maze-field top bottom " data-title="35/16"></div>
+        <div class="maze-field top " data-title="35/17"></div>
+        <div class="maze-field " data-title="35/18"></div>
+        <div class="maze-field bottom " data-title="35/19"></div>
+        <div class="maze-field top right " data-title="35/20"></div>
+        <div class="maze-field right left " data-title="35/21"></div>
+        <div class="maze-field top right left " data-title="35/22"></div>
+        <div class="maze-field right left " data-title="35/23"></div>
+        <div class="maze-field top right left " data-title="35/24"></div>
+        <div class="maze-field top right left " data-title="35/25"></div>
+        <div class="maze-field top right left " data-title="35/26"></div>
+        <div class="maze-field left " data-title="35/27"></div>
+        <div class="maze-field top bottom " data-title="35/28"></div>
+        <div class="maze-field " data-title="35/29"></div>
+        <div class="maze-field top right bottom " data-title="35/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="36/0"></div>
+        <div class="maze-field right left " data-title="36/1"></div>
+        <div class="maze-field right bottom left " data-title="36/2"></div>
+        <div class="maze-field top right left " data-title="36/3"></div>
+        <div class="maze-field right left " data-title="36/4"></div>
+        <div class="maze-field right left " data-title="36/5"></div>
+        <div class="maze-field bottom left " data-title="36/6"></div>
+        <div class="maze-field bottom " data-title="36/7"></div>
+        <div class="maze-field right " data-title="36/8"></div>
+        <div class="maze-field right bottom left " data-title="36/9"></div>
+        <div class="maze-field left " data-title="36/10"></div>
+        <div class="maze-field bottom " data-title="36/11"></div>
+        <div class="maze-field top bottom " data-title="36/12"></div>
+        <div class="maze-field " data-title="36/13"></div>
+        <div class="maze-field top right bottom " data-title="36/14"></div>
+        <div class="maze-field left " data-title="36/15"></div>
+        <div class="maze-field top right bottom " data-title="36/16"></div>
+        <div class="maze-field right left " data-title="36/17"></div>
+        <div class="maze-field bottom left " data-title="36/18"></div>
+        <div class="maze-field top right bottom " data-title="36/19"></div>
+        <div class="maze-field bottom left " data-title="36/20"></div>
+        <div class="maze-field bottom " data-title="36/21"></div>
+        <div class="maze-field right " data-title="36/22"></div>
+        <div class="maze-field right bottom left " data-title="36/23"></div>
+        <div class="maze-field left " data-title="36/24"></div>
+        <div class="maze-field " data-title="36/25"></div>
+        <div class="maze-field " data-title="36/26"></div>
+        <div class="maze-field right " data-title="36/27"></div>
+        <div class="maze-field top right left " data-title="36/28"></div>
+        <div class="maze-field right bottom left " data-title="36/29"></div>
+        <div class="maze-field top right left " data-title="36/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="37/0"></div>
+        <div class="maze-field bottom left " data-title="37/1"></div>
+        <div class="maze-field top right " data-title="37/2"></div>
+        <div class="maze-field right left " data-title="37/3"></div>
+        <div class="maze-field left " data-title="37/4"></div>
+        <div class="maze-field " data-title="37/5"></div>
+        <div class="maze-field top right " data-title="37/6"></div>
+        <div class="maze-field top bottom left " data-title="37/7"></div>
+        <div class="maze-field " data-title="37/8"></div>
+        <div class="maze-field top bottom " data-title="37/9"></div>
+        <div class="maze-field " data-title="37/10"></div>
+        <div class="maze-field top bottom " data-title="37/11"></div>
+        <div class="maze-field top right " data-title="37/12"></div>
+        <div class="maze-field bottom left " data-title="37/13"></div>
+        <div class="maze-field top right " data-title="37/14"></div>
+        <div class="maze-field right left " data-title="37/15"></div>
+        <div class="maze-field top right left " data-title="37/16"></div>
+        <div class="maze-field left " data-title="37/17"></div>
+        <div class="maze-field top right bottom " data-title="37/18"></div>
+        <div class="maze-field top left " data-title="37/19"></div>
+        <div class="maze-field top bottom " data-title="37/20"></div>
+        <div class="maze-field top right " data-title="37/21"></div>
+        <div class="maze-field right left " data-title="37/22"></div>
+        <div class="maze-field top bottom left " data-title="37/23"></div>
+        <div class="maze-field right bottom " data-title="37/24"></div>
+        <div class="maze-field right left " data-title="37/25"></div>
+        <div class="maze-field right bottom left " data-title="37/26"></div>
+        <div class="maze-field left " data-title="37/27"></div>
+        <div class="maze-field bottom " data-title="37/28"></div>
+        <div class="maze-field top " data-title="37/29"></div>
+        <div class="maze-field right bottom " data-title="37/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="38/0"></div>
+        <div class="maze-field top right bottom " data-title="38/1"></div>
+        <div class="maze-field right bottom left " data-title="38/2"></div>
+        <div class="maze-field bottom left " data-title="38/3"></div>
+        <div class="maze-field right " data-title="38/4"></div>
+        <div class="maze-field right bottom left " data-title="38/5"></div>
+        <div class="maze-field bottom left " data-title="38/6"></div>
+        <div class="maze-field top " data-title="38/7"></div>
+        <div class="maze-field right " data-title="38/8"></div>
+        <div class="maze-field top left " data-title="38/9"></div>
+        <div class="maze-field bottom " data-title="38/10"></div>
+        <div class="maze-field top right bottom " data-title="38/11"></div>
+        <div class="maze-field right bottom left " data-title="38/12"></div>
+        <div class="maze-field top bottom left " data-title="38/13"></div>
+        <div class="maze-field right bottom " data-title="38/14"></div>
+        <div class="maze-field bottom left " data-title="38/15"></div>
+        <div class="maze-field right " data-title="38/16"></div>
+        <div class="maze-field right bottom left " data-title="38/17"></div>
+        <div class="maze-field top left " data-title="38/18"></div>
+        <div class="maze-field bottom " data-title="38/19"></div>
+        <div class="maze-field top " data-title="38/20"></div>
+        <div class="maze-field right bottom " data-title="38/21"></div>
+        <div class="maze-field left " data-title="38/22"></div>
+        <div class="maze-field top right " data-title="38/23"></div>
+        <div class="maze-field top bottom left " data-title="38/24"></div>
+        <div class="maze-field " data-title="38/25"></div>
+        <div class="maze-field top " data-title="38/26"></div>
+        <div class="maze-field bottom " data-title="38/27"></div>
+        <div class="maze-field top right bottom " data-title="38/28"></div>
+        <div class="maze-field right left " data-title="38/29"></div>
+        <div class="maze-field top right left " data-title="38/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field left " data-title="39/0"></div>
+        <div class="maze-field top right bottom " data-title="39/1"></div>
+        <div class="maze-field top left " data-title="39/2"></div>
+        <div class="maze-field top " data-title="39/3"></div>
+        <div class="maze-field " data-title="39/4"></div>
+        <div class="maze-field top " data-title="39/5"></div>
+        <div class="maze-field top right bottom " data-title="39/6"></div>
+        <div class="maze-field right bottom left " data-title="39/7"></div>
+        <div class="maze-field bottom left " data-title="39/8"></div>
+        <div class="maze-field right " data-title="39/9"></div>
+        <div class="maze-field top left " data-title="39/10"></div>
+        <div class="maze-field top bottom " data-title="39/11"></div>
+        <div class="maze-field top bottom " data-title="39/12"></div>
+        <div class="maze-field top " data-title="39/13"></div>
+        <div class="maze-field top bottom " data-title="39/14"></div>
+        <div class="maze-field top right bottom " data-title="39/15"></div>
+        <div class="maze-field right bottom left " data-title="39/16"></div>
+        <div class="maze-field top right left " data-title="39/17"></div>
+        <div class="maze-field left " data-title="39/18"></div>
+        <div class="maze-field top right " data-title="39/19"></div>
+        <div class="maze-field right left " data-title="39/20"></div>
+        <div class="maze-field top right left " data-title="39/21"></div>
+        <div class="maze-field right bottom left " data-title="39/22"></div>
+        <div class="maze-field bottom left " data-title="39/23"></div>
+        <div class="maze-field top " data-title="39/24"></div>
+        <div class="maze-field right bottom " data-title="39/25"></div>
+        <div class="maze-field left " data-title="39/26"></div>
+        <div class="maze-field top " data-title="39/27"></div>
+        <div class="maze-field top " data-title="39/28"></div>
+        <div class="maze-field right bottom " data-title="39/29"></div>
+        <div class="maze-field right left " data-title="39/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field right left " data-title="40/0"></div>
+        <div class="maze-field top right left " data-title="40/1"></div>
+        <div class="maze-field right bottom left " data-title="40/2"></div>
+        <div class="maze-field right bottom left " data-title="40/3"></div>
+        <div class="maze-field right left " data-title="40/4"></div>
+        <div class="maze-field bottom left " data-title="40/5"></div>
+        <div class="maze-field top right " data-title="40/6"></div>
+        <div class="maze-field top right left " data-title="40/7"></div>
+        <div class="maze-field top right left " data-title="40/8"></div>
+        <div class="maze-field left " data-title="40/9"></div>
+        <div class="maze-field " data-title="40/10"></div>
+        <div class="maze-field top right bottom " data-title="40/11"></div>
+        <div class="maze-field top bottom left " data-title="40/12"></div>
+        <div class="maze-field bottom " data-title="40/13"></div>
+        <div class="maze-field top " data-title="40/14"></div>
+        <div class="maze-field top bottom " data-title="40/15"></div>
+        <div class="maze-field top right " data-title="40/16"></div>
+        <div class="maze-field right left " data-title="40/17"></div>
+        <div class="maze-field right bottom left " data-title="40/18"></div>
+        <div class="maze-field right left " data-title="40/19"></div>
+        <div class="maze-field right bottom left " data-title="40/20"></div>
+        <div class="maze-field right left " data-title="40/21"></div>
+        <div class="maze-field top right left " data-title="40/22"></div>
+        <div class="maze-field top bottom left " data-title="40/23"></div>
+        <div class="maze-field bottom " data-title="40/24"></div>
+        <div class="maze-field top right " data-title="40/25"></div>
+        <div class="maze-field right left " data-title="40/26"></div>
+        <div class="maze-field right bottom left " data-title="40/27"></div>
+        <div class="maze-field right bottom left " data-title="40/28"></div>
+        <div class="maze-field top left " data-title="40/29"></div>
+        <div class="maze-field right bottom " data-title="40/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field bottom left " data-title="41/0"></div>
+        <div class="maze-field bottom " data-title="41/1"></div>
+        <div class="maze-field top bottom " data-title="41/2"></div>
+        <div class="maze-field top right " data-title="41/3"></div>
+        <div class="maze-field left " data-title="41/4"></div>
+        <div class="maze-field top right bottom " data-title="41/5"></div>
+        <div class="maze-field right left " data-title="41/6"></div>
+        <div class="maze-field left " data-title="41/7"></div>
+        <div class="maze-field " data-title="41/8"></div>
+        <div class="maze-field right bottom " data-title="41/9"></div>
+        <div class="maze-field bottom left " data-title="41/10"></div>
+        <div class="maze-field top bottom " data-title="41/11"></div>
+        <div class="maze-field top right bottom " data-title="41/12"></div>
+        <div class="maze-field top right left " data-title="41/13"></div>
+        <div class="maze-field bottom left " data-title="41/14"></div>
+        <div class="maze-field top right bottom " data-title="41/15"></div>
+        <div class="maze-field bottom left " data-title="41/16"></div>
+        <div class="maze-field " data-title="41/17"></div>
+        <div class="maze-field top " data-title="41/18"></div>
+        <div class="maze-field bottom " data-title="41/19"></div>
+        <div class="maze-field top bottom " data-title="41/20"></div>
+        <div class="maze-field right " data-title="41/21"></div>
+        <div class="maze-field bottom left " data-title="41/22"></div>
+        <div class="maze-field top " data-title="41/23"></div>
+        <div class="maze-field top right bottom " data-title="41/24"></div>
+        <div class="maze-field bottom left " data-title="41/25"></div>
+        <div class="maze-field " data-title="41/26"></div>
+        <div class="maze-field top right bottom " data-title="41/27"></div>
+        <div class="maze-field top bottom left " data-title="41/28"></div>
+        <div class="maze-field " data-title="41/29"></div>
+        <div class="maze-field top right " data-title="41/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top bottom left " data-title="42/0"></div>
+        <div class="maze-field top bottom " data-title="42/1"></div>
+        <div class="maze-field top right " data-title="42/2"></div>
+        <div class="maze-field right left " data-title="42/3"></div>
+        <div class="maze-field left " data-title="42/4"></div>
+        <div class="maze-field top " data-title="42/5"></div>
+        <div class="maze-field right " data-title="42/6"></div>
+        <div class="maze-field right bottom left " data-title="42/7"></div>
+        <div class="maze-field right left " data-title="42/8"></div>
+        <div class="maze-field top right left " data-title="42/9"></div>
+        <div class="maze-field top right left " data-title="42/10"></div>
+        <div class="maze-field top left " data-title="42/11"></div>
+        <div class="maze-field top right " data-title="42/12"></div>
+        <div class="maze-field right left " data-title="42/13"></div>
+        <div class="maze-field top left " data-title="42/14"></div>
+        <div class="maze-field top bottom " data-title="42/15"></div>
+        <div class="maze-field top " data-title="42/16"></div>
+        <div class="maze-field right bottom " data-title="42/17"></div>
+        <div class="maze-field bottom left " data-title="42/18"></div>
+        <div class="maze-field top right " data-title="42/19"></div>
+        <div class="maze-field top right left " data-title="42/20"></div>
+        <div class="maze-field right bottom left " data-title="42/21"></div>
+        <div class="maze-field top right left " data-title="42/22"></div>
+        <div class="maze-field right left " data-title="42/23"></div>
+        <div class="maze-field top left " data-title="42/24"></div>
+        <div class="maze-field top bottom " data-title="42/25"></div>
+        <div class="maze-field " data-title="42/26"></div>
+        <div class="maze-field top " data-title="42/27"></div>
+        <div class="maze-field top " data-title="42/28"></div>
+        <div class="maze-field right bottom " data-title="42/29"></div>
+        <div class="maze-field right bottom left " data-title="42/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field top left " data-title="43/0"></div>
+        <div class="maze-field top right bottom " data-title="43/1"></div>
+        <div class="maze-field bottom left " data-title="43/2"></div>
+        <div class="maze-field " data-title="43/3"></div>
+        <div class="maze-field right bottom " data-title="43/4"></div>
+        <div class="maze-field right bottom left " data-title="43/5"></div>
+        <div class="maze-field bottom left " data-title="43/6"></div>
+        <div class="maze-field top right " data-title="43/7"></div>
+        <div class="maze-field left " data-title="43/8"></div>
+        <div class="maze-field bottom " data-title="43/9"></div>
+        <div class="maze-field right " data-title="43/10"></div>
+        <div class="maze-field right bottom left " data-title="43/11"></div>
+        <div class="maze-field bottom left " data-title="43/12"></div>
+        <div class="maze-field right " data-title="43/13"></div>
+        <div class="maze-field right bottom left " data-title="43/14"></div>
+        <div class="maze-field top left " data-title="43/15"></div>
+        <div class="maze-field right " data-title="43/16"></div>
+        <div class="maze-field top left " data-title="43/17"></div>
+        <div class="maze-field top " data-title="43/18"></div>
+        <div class="maze-field " data-title="43/19"></div>
+        <div class="maze-field right " data-title="43/20"></div>
+        <div class="maze-field top left " data-title="43/21"></div>
+        <div class="maze-field " data-title="43/22"></div>
+        <div class="maze-field right " data-title="43/23"></div>
+        <div class="maze-field right left " data-title="43/24"></div>
+        <div class="maze-field top bottom left " data-title="43/25"></div>
+        <div class="maze-field right " data-title="43/26"></div>
+        <div class="maze-field right left " data-title="43/27"></div>
+        <div class="maze-field left " data-title="43/28"></div>
+        <div class="maze-field top " data-title="43/29"></div>
+        <div class="maze-field top right bottom " data-title="43/30"></div>
+    </div>
+    <div class="maze-row">
+        <div class="maze-field bottom left start " data-title="44/0"></div>
+        <div class="maze-field top bottom " data-title="44/1"></div>
+        <div class="maze-field top bottom " data-title="44/2"></div>
+        <div class="maze-field right bottom " data-title="44/3"></div>
+        <div class="maze-field top bottom left " data-title="44/4"></div>
+        <div class="maze-field top bottom " data-title="44/5"></div>
+        <div class="maze-field top bottom " data-title="44/6"></div>
+        <div class="maze-field right bottom " data-title="44/7"></div>
+        <div class="maze-field right bottom left " data-title="44/8"></div>
+        <div class="maze-field top bottom left " data-title="44/9"></div>
+        <div class="maze-field bottom " data-title="44/10"></div>
+        <div class="maze-field top bottom " data-title="44/11"></div>
+        <div class="maze-field top right bottom " data-title="44/12"></div>
+        <div class="maze-field bottom left " data-title="44/13"></div>
+        <div class="maze-field top bottom " data-title="44/14"></div>
+        <div class="maze-field right bottom " data-title="44/15"></div>
+        <div class="maze-field right bottom left " data-title="44/16"></div>
+        <div class="maze-field right bottom left " data-title="44/17"></div>
+        <div class="maze-field right bottom left " data-title="44/18"></div>
+        <div class="maze-field right bottom left " data-title="44/19"></div>
+        <div class="maze-field right bottom left " data-title="44/20"></div>
+        <div class="maze-field right bottom left " data-title="44/21"></div>
+        <div class="maze-field right bottom left " data-title="44/22"></div>
+        <div class="maze-field bottom left " data-title="44/23"></div>
+        <div class="maze-field bottom " data-title="44/24"></div>
+        <div class="maze-field top right bottom " data-title="44/25"></div>
+        <div class="maze-field right bottom left " data-title="44/26"></div>
+        <div class="maze-field right bottom left " data-title="44/27"></div>
+        <div class="maze-field right bottom left " data-title="44/28"></div>
+        <div class="maze-field bottom left " data-title="44/29"></div>
+        <div class="maze-field top right bottom " data-title="44/30"></div>
+    </div>
+</div>
+<script>var elements = document.querySelectorAll('.maze-field');
+for (var i = 0; i < elements.length; i++) {
+    var element = elements[i];
+    element.addEventListener('click', function () {
+        this.classList.toggle('marked');
+    });
+}</script>
+</body>
+</html>
